@@ -1,9 +1,12 @@
 object Main {
 
 
-  def readInput(filename:String):List[String] = scala.io.Source.fromFile(filename).getLines().toList
+
 
   def main(args: Array[String]): Unit = {
-    println(readInput("data_small.txt").take(2))
+    val data = new DataParser("data_small.txt")
+    val tree = new BiTree(data.getFlattenData)
+
+    println(tree.nodes)
   }
 }
