@@ -7,6 +7,7 @@ object Main {
     println(data.getLines)
     println(graph)
     println(TriangleGraph.binaryPaths(graph.connections,0).map(_+7))
+
   }
 
 }
