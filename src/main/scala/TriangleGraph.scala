@@ -1,6 +1,8 @@
 import scala.annotation.tailrec
 import scala.util.Try
-case class TriangleGraph private (connections:List[(Int,Int)])
+case class TriangleGraph private (connections:List[(Int,Int)]){
+  val map : Map[Int,Int] = Map.from(connections)
+}
 
 
 
@@ -15,8 +17,14 @@ object TriangleGraph{
       })
       (currLevel,previousLevelWithConnections._2:::currentConnections)
     })
-
     TriangleGraph(connections._2)
+  }
+  //Get a graph, return the sum of all different paths
+  def binaryPaths(connections:List[(Int,Int)],sum:Int):List[Int] = {
+    connections.size match {
+      case 0=> List(sum)
+      case _ => connections.take(2).flatMap(each=>binaryPaths(connections.drop(2),sum+each._2))
 
+    }
   }
 }
