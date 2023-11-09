@@ -1,0 +1,1 @@
+How to run it? just add the filename as its first param, file should be within working directory
