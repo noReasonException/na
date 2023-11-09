@@ -19,7 +19,7 @@ object TriangleGraph{
   }
   //Get a graph, return the sum of all different paths
 
-  def recv_binaryPaths(connections:List[(Int,Int)],sum:Int,lvl:Int):List[Int] = {
+  private def recv_binaryPaths(connections:List[(Int,Int)],sum:Int,lvl:Int):List[Int] = {
     lvl match {
       case 1=> List(sum)
       case _ => connections.take(2).flatMap(each=>recv_binaryPaths(connections.drop(2),sum+each._2,lvl-1))
