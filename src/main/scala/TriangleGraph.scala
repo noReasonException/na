@@ -5,10 +5,6 @@ case class
 TriangleGraph private (connections:List[(Int,Int)]){
   val map : Map[Int,Int] = Map.from(connections)
 }
-
-
-
-
 object TriangleGraph{
   def build (levels: List[List[Int]]): TriangleGraph ={
     val connections = levels.tail.foldLeft((levels.head,List.empty[(Int,Int)]))((previousLevelWithConnections,currLevel)=>{
@@ -22,12 +18,15 @@ object TriangleGraph{
     TriangleGraph(connections._2)
   }
   //Get a graph, return the sum of all different paths
-  def binaryPaths(connections:List[(Int,Int)],sum:Int,lvl:Int):List[Int] = {
-    println(lvl+"Initialized")
+
+  def recv_binaryPaths(connections:List[(Int,Int)],sum:Int,lvl:Int):List[Int] = {
     lvl match {
       case 1=> List(sum)
-      case _ => connections.take(2).flatMap(each=>binaryPaths(connections.drop(2),sum+each._2,lvl-1))
-
+      case _ => connections.take(2).flatMap(each=>recv_binaryPaths(connections.drop(2),sum+each._2,lvl-1))
     }
+  }
+  def binaryPaths(connections:List[(Int,Int)],sum:Int,lvl:Int):List[Int]={
+    val root = connections.head._1
+    recv_binaryPaths(connections, sum, lvl).map(_+root)
   }
 }
