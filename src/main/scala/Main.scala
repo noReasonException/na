@@ -6,7 +6,7 @@ object Main {
     val graph = TriangleGraph.build(data.getLines)
     println(data.getLines)
     println(graph)
-    println(TriangleGraph.binaryPaths(graph.connections,0))
+    println(TriangleGraph.binaryPaths(graph.connections,0).map(_+7))
   }
 
 }
